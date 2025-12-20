@@ -5,7 +5,7 @@ require(`dotenv`).config()
 const express = require(`express`)
 
 //import cors
-// const cors = require(`cors`)
+const cors = require(`cors`)
 
 //import router
 const router = require(`./router`)
@@ -17,10 +17,10 @@ require(`./connection`)
 const rsServer = express()
 
 //tell server to use cors
-// rsServer.use(cors())
+rsServer.use(cors())
 
 //tell server to use express.json
-// rsServer.use(express.json())
+rsServer.use(express.json())
 
 //tell server to use router
 rsServer.use(router)
