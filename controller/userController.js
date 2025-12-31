@@ -1,4 +1,3 @@
-//import 
 const users = require('../models/userModel')
 const jwt = require('jsonwebtoken')
 
