@@ -25,6 +25,9 @@ rsServer.use(express.json())
 //tell server to use router
 rsServer.use(router)
 
+//uploads folder
+rsServer.use('/upload', express.static('./uploads'))
+
 //set port for the server
 const PORT = 4000 || process.env.PORT
 

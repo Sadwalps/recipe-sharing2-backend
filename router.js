@@ -11,9 +11,9 @@ const router = new express.Router()
 router.post(`/register`, registerController)
 
 //router for login
-router.post(`/login`, loginController, multerConfig.single("recipeImage"), addRecipeController)
+router.post(`/login`, loginController)
 
 //router for add recipe
-router.post(`/add-recipe`,jwtMiddleware)
+router.post(`/add-recipe`, jwtMiddleware, multerConfig.single("recipeImage"), addRecipeController)
 
 module.exports = router
