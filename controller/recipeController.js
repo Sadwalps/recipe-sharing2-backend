@@ -1,5 +1,6 @@
 const recipes = require('../models/recipeModel')
 
+//controller for add recipes
 exports.addRecipeController = async (req, res) => {
     console.log(`Inside add recipe controller`);
 
@@ -28,8 +29,46 @@ exports.addRecipeController = async (req, res) => {
     } catch (error) {
         res.status(401).json(error)
     }
+}
 
+//controller for get home recipes
+exports.getHomeRecipeController = async (req, res) => {
+    console.log(`Inside get home recipes controller `);
 
+    try {
+        const homeRecipes = await recipes.find().limit(4)
+        res.status(200).json(homeRecipes)
 
+    } catch (error) {
+        res.status(401).json(error)
+    }
+}
+
+//controller for get user recipes
+exports.getUserRecipeController = async (req, res) => {
+    console.log(`Inside user recipes controller`);
+    const userId = req.payload
+    console.log(userId);
+
+    try {
+        const userRecipes = await recipes.find({ userId })
+        res.status(200).json(userRecipes)
+    } catch (error) {
+        res.status(406).json(error)
+    }
+
+}
+
+//controller for delete use recipes
+exports.deleteUserRecipeController = async (req, res) => {
+    console.log(`Inside delete user recipe controller`);
+    const { id } = req.params
+
+    try {
+        await recipes.findByIdAndDelete({ _id: id })
+        res.status(200).json(`Recipe successfully deleted`)
+    } catch (error) {
+        res.status(401).json(error)
+    }
 
 }
