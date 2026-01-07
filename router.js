@@ -3,7 +3,7 @@ const express = require('express')
 const jwtMiddleware = require('./middleware/jwtMiddleware')
 const { registerController, loginController } = require('./controller/userController')
 const multerConfig = require('./middleware/multerMiddleware')
-const { addRecipeController, getHomeRecipeController, getUserRecipeController, deleteUserRecipeController } = require('./controller/recipeController')
+const { addRecipeController, getHomeRecipeController, getUserRecipeController, deleteUserRecipeController, getAllRecipeController } = require('./controller/recipeController')
 
 const router = new express.Router()
 
@@ -25,6 +25,7 @@ router.get(`/user-recipe`, jwtMiddleware, getUserRecipeController)
 //router for delete user recipes
 router.delete(`/delete-recipe/:id`, jwtMiddleware, deleteUserRecipeController)
 
-
+//router for get all recipes
+router.get(`/all-recipes`, jwtMiddleware, getAllRecipeController)
 
 module.exports = router

@@ -72,3 +72,22 @@ exports.deleteUserRecipeController = async (req, res) => {
     }
 
 }
+
+//controller for get all recipes
+exports.getAllRecipeController = async (req, res) => {
+    console.log(`Inside all recipes controller`);
+    const searchKey = req.query.search
+    console.log(searchKey);
+
+    const query = {
+        recipename: {
+            $regex: searchKey, $options: "i"
+        }
+    }
+    try {
+        const allRecipes = await recipes.find(query)
+        res.status(200).json(allRecipes)
+    } catch (error) {
+        res.status(401).json(error)
+    }
+}
