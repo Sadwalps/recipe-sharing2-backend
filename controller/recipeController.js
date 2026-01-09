@@ -91,3 +91,32 @@ exports.getAllRecipeController = async (req, res) => {
         res.status(401).json(error)
     }
 }
+
+//controller for edit user recipe
+exports.editUserRecipeController = async (req, res) => {
+    console.log(`Inside edit user recipe controller`);
+
+    const { id } = req.params
+    const userId = req.payload
+    const { recipename, time, incredients, category, recipeImage } = req.body
+    console.log(recipename, time, incredients, category, recipeImage);
+
+    uploadImage = req.file ? req.file.filename : recipeImage
+
+    try {
+        const existingRecipe = await recipes.findByIdAndUpdate({ _id: id }, {
+            recipename,
+            time,
+            incredients,
+            category,
+            recipeImage: uploadImage,
+            userId
+        }, { new: true })
+        await existingRecipe.save()
+        res.status(200).json(existingRecipe)
+    } catch (error) {
+        res.status(401).json(error)
+    }
+
+
+}

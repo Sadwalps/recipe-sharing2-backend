@@ -3,7 +3,7 @@ const express = require('express')
 const jwtMiddleware = require('./middleware/jwtMiddleware')
 const { registerController, loginController } = require('./controller/userController')
 const multerConfig = require('./middleware/multerMiddleware')
-const { addRecipeController, getHomeRecipeController, getUserRecipeController, deleteUserRecipeController, getAllRecipeController } = require('./controller/recipeController')
+const { addRecipeController, getHomeRecipeController, getUserRecipeController, deleteUserRecipeController, getAllRecipeController, editUserRecipeController } = require('./controller/recipeController')
 
 const router = new express.Router()
 
@@ -27,5 +27,8 @@ router.delete(`/delete-recipe/:id`, jwtMiddleware, deleteUserRecipeController)
 
 //router for get all recipes
 router.get(`/all-recipes`, jwtMiddleware, getAllRecipeController)
+
+//router for update user recipe
+router.put(`/update-userrecipe/:id`, jwtMiddleware, multerConfig.single("recipeImage"), editUserRecipeController)
 
 module.exports = router
