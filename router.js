@@ -4,7 +4,7 @@ const jwtMiddleware = require('./middleware/jwtMiddleware')
 const { registerController, loginController } = require('./controller/userController')
 const multerConfig = require('./middleware/multerMiddleware')
 const { addRecipeController, getHomeRecipeController, getUserRecipeController, deleteUserRecipeController, getAllRecipeController, editUserRecipeController } = require('./controller/recipeController')
-const { adminRegisterController } = require('./controller/adminController')
+const { adminRegisterController, adminLoginController } = require('./controller/adminController')
 
 const router = new express.Router()
 
@@ -34,5 +34,8 @@ router.put(`/update-userrecipe/:id`, jwtMiddleware, multerConfig.single("recipeI
 
 //router for admin register
 router.post(`/admin-register`, adminRegisterController)
+
+//router for admin login
+router.post(`/admin-login`,  adminLoginController)
 
 module.exports = router

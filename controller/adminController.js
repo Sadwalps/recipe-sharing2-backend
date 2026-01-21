@@ -1,4 +1,5 @@
 //import model
+const jwt = require('jsonwebtoken');
 const admins = require('../models/adminModel')
 
 //controller for adminRegister
@@ -18,6 +19,28 @@ exports.adminRegisterController = async (req, res) => {
             })
             await newAdmin.save()
             res.status(200).json(newAdmin)
+        }
+    } catch (error) {
+        res.status(401).json(error)
+    }
+}
+
+//controller for adminLogin
+
+exports.adminLoginController = async (req, res) => {
+    console.log(`Inside admin login controller`);
+
+    const { email, password } = req.body
+    console.log(email, password);
+
+
+    try {
+        const existingAdmin = await admins.findOne({ email, password })
+        if (existingAdmin) {
+            const token = jwt.sign({ userId: existingAdmin._id }, "secretkey")
+            res.status(200).json({ existingAdmin, token })
+        } else {
+            res.status(406).json(`Incorrect email or password`)
         }
     } catch (error) {
         res.status(401).json(error)
