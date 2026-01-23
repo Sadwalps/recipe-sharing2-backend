@@ -1,6 +1,8 @@
 //import model
 const jwt = require('jsonwebtoken');
 const admins = require('../models/adminModel')
+const usersd = require(`../models/userModel`)
+
 
 //controller for adminRegister
 exports.adminRegisterController = async (req, res) => {
@@ -45,4 +47,17 @@ exports.adminLoginController = async (req, res) => {
     } catch (error) {
         res.status(401).json(error)
     }
+}
+
+//controller for get users details
+exports.getUsersDetailsController = async (req, res) => {
+    console.log(`Inside get users details controller`);
+
+    try {
+        const allUsersdetails = await usersd.find()
+        res.status(200).json(allUsersdetails)
+    } catch (error) {
+        res.status(401).json(error)
+    }
+
 }
