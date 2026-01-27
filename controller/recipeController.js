@@ -59,7 +59,7 @@ exports.getUserRecipeController = async (req, res) => {
 
 }
 
-//controller for delete use recipes
+//controller for delete user recipes
 exports.deleteUserRecipeController = async (req, res) => {
     console.log(`Inside delete user recipe controller`);
     const { id } = req.params
@@ -117,6 +117,4 @@ exports.editUserRecipeController = async (req, res) => {
     } catch (error) {
         res.status(401).json(error)
     }
-
-
 }
