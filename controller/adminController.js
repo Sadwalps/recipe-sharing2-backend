@@ -2,7 +2,7 @@
 const jwt = require('jsonwebtoken');
 const admins = require('../models/adminModel')
 const usersd = require(`../models/userModel`)
-
+const recipes = require('../models/recipeModel')
 
 //controller for adminRegister
 exports.adminRegisterController = async (req, res) => {
@@ -72,4 +72,17 @@ exports.deleteUserController = async (req, res) => {
     } catch (error) {
         res.status(401).json(error)
     }
+}
+
+//controller to get all recipes
+exports.getAllRecipesController = async(req , res)=>{
+    console.log(`Inside get all recipes controller`);
+
+    try {
+        const allRecipes = await recipes.find()
+        res.status(200).json(allRecipes)
+    } catch (error) {
+        res.status(401).json(error)
+    }
+    
 }
