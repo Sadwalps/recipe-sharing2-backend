@@ -36,13 +36,14 @@ router.put(`/update-userrecipe/:id`, jwtMiddleware, multerConfig.single("recipeI
 router.post(`/admin-register`, adminRegisterController)
 
 //router for admin login
-router.post(`/admin-login`,  adminLoginController)
+router.post(`/admin-login`, adminLoginController)
 //router for get all users details
-router.get(`/all-users`, getUsersDetailsController) 
+router.get(`/all-users`, getUsersDetailsController)
 
 //router for delete users
-router.delete(`/delete-user/:id`,jwtMiddleware, deleteUserController)
+router.delete(`/delete-user/:id`, jwtMiddleware, deleteUserController)
 
 //router for get all recipes for admin
-router.get(`/admin-all-recipes`,jwtMiddleware, getAllRecipesController)
+router.get(`/admin-all-recipes`, jwtMiddleware, getAllRecipesController)
+
 module.exports = router
