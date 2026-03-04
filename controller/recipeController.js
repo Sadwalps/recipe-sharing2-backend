@@ -56,7 +56,7 @@ exports.getUserRecipeController = async (req, res) => {
     } catch (error) {
         res.status(406).json(error)
     }
-
+    
 }
 
 //controller for delete user recipes
