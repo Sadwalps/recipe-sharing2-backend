@@ -37,6 +37,7 @@ exports.getUserChatController = async (req, res) => {
     try {
         const userChats = await chats.find({ userId })
         res.status(200).json(userChats)
+         
     } catch (error) {
         res.status(406).json(error)
     }

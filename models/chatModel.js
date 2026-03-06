@@ -9,6 +9,9 @@ const chatSchema = new mongoose.Schema({
     chat: {
         required: true,
         type: String
+    }, userId: {
+        required: true,
+        type: String
     }
 })
 
