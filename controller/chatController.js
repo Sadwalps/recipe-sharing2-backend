@@ -37,8 +37,23 @@ exports.getUserChatController = async (req, res) => {
     try {
         const userChats = await chats.find({ userId })
         res.status(200).json(userChats)
-         
+
     } catch (error) {
         res.status(406).json(error)
     }
+}
+
+
+//controller for delete user chats
+exports.deleteUserChatController = async (req, res) => {
+    console.log(`Inside delete user chat controller`);
+    const { id } = req.params
+
+    try {
+        await chats.findByIdAndDelete({ _id: id })
+        res.status(200).json(`Chat successfully deleted`)
+    } catch (error) {
+        res.status(401).json(error)
+    }
+
 }
