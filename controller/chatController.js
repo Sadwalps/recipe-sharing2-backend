@@ -55,5 +55,28 @@ exports.deleteUserChatController = async (req, res) => {
     } catch (error) {
         res.status(401).json(error)
     }
+}
+
+//controller for edit user chats
+exports.editUserChatController = async (req, res) => {
+    console.log(`Inside edit user chat controller`);
+
+    const { id } = req.params
+    const userId = req.payload
+    const { username, chat } = req.body
+    console.log(username, chat);
+
+    try {
+        const existingChats = await chats.findByIdAndUpdate({ _id: id }, {
+            username,
+            chat,
+            userId
+        }, { new: true })
+        await existingChats.save()
+        res.status(200).json(existingChats)
+    } catch (error) {
+        res.status(401).json(error)
+    }
+
 
 }
