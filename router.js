@@ -4,7 +4,7 @@ const jwtMiddleware = require('./middleware/jwtMiddleware')
 const { registerController, loginController } = require('./controller/userController')
 const multerConfig = require('./middleware/multerMiddleware')
 const { addRecipeController, getHomeRecipeController, getUserRecipeController, deleteUserRecipeController, getAllRecipeController, editUserRecipeController } = require('./controller/recipeController')
-const { adminRegisterController, adminLoginController, getUsersDetailsController, deleteUserController, getAllRecipesController } = require('./controller/adminController')
+const { adminRegisterController, adminLoginController, getUsersDetailsController, deleteUserController, getAllRecipesController, getAllChatsController } = require('./controller/adminController')
 const { addChatController, getUserChatController, deleteUserChatController, editUserChatController } = require('./controller/chatController')
 
 const router = new express.Router()
@@ -38,6 +38,7 @@ router.post(`/admin-register`, adminRegisterController)
 
 //router for admin login
 router.post(`/admin-login`, adminLoginController)
+
 //router for get all users details
 router.get(`/all-users`, getUsersDetailsController)
 
@@ -50,7 +51,7 @@ router.get(`/admin-all-recipes`, jwtMiddleware, getAllRecipesController)
 //router for add chats
 router.post(`/add-chats`, jwtMiddleware, addChatController)
 
-//router for get user recipes
+//router for get user chats
 router.get(`/user-chats`, jwtMiddleware, getUserChatController)
 
 //router for delete user chats
@@ -58,5 +59,8 @@ router.delete(`/delete-chat/:id`, jwtMiddleware, deleteUserChatController)
 
 //router for update user chat
 router.put(`/update-userchat/:id`, jwtMiddleware, editUserChatController)
+
+//router for get all users details
+router.get(`/admin-all-chats`, jwtMiddleware, getAllChatsController)
 
 module.exports = router
