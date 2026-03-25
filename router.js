@@ -61,6 +61,6 @@ router.delete(`/delete-chat/:id`, jwtMiddleware, deleteUserChatController)
 router.put(`/update-userchat/:id`, jwtMiddleware, editUserChatController)
 
 //router for get all users details
-router.get(`/admin-all-chats`, jwtMiddleware, getAllChatsController)
+router.get(`/admin-all-chats`,  getAllChatsController)
 
 module.exports = router

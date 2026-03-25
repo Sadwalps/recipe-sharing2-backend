@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const admins = require('../models/adminModel')
 const usersd = require(`../models/userModel`)
 const recipes = require('../models/recipeModel')
-const chats = require('../models/chatModel')
+const chatsd = require('../models/chatModel')
 
 //controller for adminRegister
 exports.adminRegisterController = async (req, res) => {
@@ -92,7 +92,7 @@ exports.getAllChatsController = async (req, res) => {
     console.log(`Inside get all chats controller`);
 
     try {
-        const allChats = await chats.find()
+        const allChats = await chatsd.find()
         res.status(200).json(allChats)
     } catch (error) {
         res.status(401).json(error)
