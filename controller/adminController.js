@@ -98,3 +98,15 @@ exports.getAllChatsController = async (req, res) => {
         res.status(401).json(error)
     }
 }
+
+//controller for delete chat
+exports.deleteChatController = async (req, res) => {
+    console.log(`Inside delete chat controller`);
+    const { id } = req.params
+    try {
+        await chatsd.findByIdAndDelete({ _id: id })
+        res.status(200).json(`User successfully deleted`)
+    } catch (error) {
+        res.status(401).json(error)
+    }
+}
