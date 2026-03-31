@@ -87,6 +87,18 @@ exports.getAllRecipesController = async (req, res) => {
     }
 }
 
+//controller for delete recipes 
+exports.deleteRecipeController = async (req, res) => {
+    console.log(`Inside delete recipe controller `);
+    const { id } = req.params
+    try {
+        await recipes.findByIdAndDelete({ _id: id })
+        res.status(200).json(`Recipe successfully deleted`)
+    } catch (error) {
+        res.status(401).json(error)
+    }
+}
+
 //controller for get all chats
 exports.getAllChatsController = async (req, res) => {
     console.log(`Inside get all chats controller`);
