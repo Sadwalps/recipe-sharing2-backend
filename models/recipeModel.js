@@ -25,6 +25,10 @@ const recipeSchema = new mongoose.Schema({
     userId: {
         required: true,
         type: String
+    },
+    userName: {
+        required: true,
+        type: String
     }
 
 })

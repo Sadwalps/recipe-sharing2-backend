@@ -4,8 +4,8 @@ const recipes = require('../models/recipeModel')
 exports.addRecipeController = async (req, res) => {
     console.log(`Inside add recipe controller`);
 
-    const { recipename, time, incredients, category } = req.body
-    console.log(recipename, time, incredients, category);
+    const { recipename, time, incredients, category,userName } = req.body
+    console.log(recipename, time, incredients, category,userName);
 
     const recipeImage = req.file.filename
     console.log(recipeImage);
@@ -21,7 +21,7 @@ exports.addRecipeController = async (req, res) => {
             res.status(406).json(`Recipe already exists`)
         } else {
             const newRecipe = new recipes({
-                recipename, time, incredients, category, recipeImage, userId
+                recipename, time, incredients, category, recipeImage, userId,userName
             })
             await newRecipe.save()
             res.status(200).json(newRecipe)
