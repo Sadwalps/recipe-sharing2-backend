@@ -4,8 +4,8 @@ const recipes = require('../models/recipeModel')
 exports.addRecipeController = async (req, res) => {
     console.log(`Inside add recipe controller`);
 
-    const { recipename, time, incredients, category,userName } = req.body
-    console.log(recipename, time, incredients, category,userName);
+    const { recipename, time, incredients, category, userName } = req.body
+    console.log(recipename, time, incredients, category, userName);
 
     const recipeImage = req.file.filename
     console.log(recipeImage);
@@ -21,7 +21,7 @@ exports.addRecipeController = async (req, res) => {
             res.status(406).json(`Recipe already exists`)
         } else {
             const newRecipe = new recipes({
-                recipename, time, incredients, category, recipeImage, userId,userName
+                recipename, time, incredients, category, recipeImage, userId, userName
             })
             await newRecipe.save()
             res.status(200).json(newRecipe)
@@ -56,7 +56,7 @@ exports.getUserRecipeController = async (req, res) => {
     } catch (error) {
         res.status(406).json(error)
     }
-    
+
 }
 
 //controller for delete user recipes
@@ -98,8 +98,8 @@ exports.editUserRecipeController = async (req, res) => {
 
     const { id } = req.params
     const userId = req.payload
-    const { recipename, time, incredients, category, recipeImage } = req.body
-    console.log(recipename, time, incredients, category, recipeImage);
+    const { recipename, time, incredients, category, userName, recipeImage } = req.body
+    console.log(recipename, time, incredients, category, userName, recipeImage);
 
     uploadImage = req.file ? req.file.filename : recipeImage
 
@@ -109,6 +109,7 @@ exports.editUserRecipeController = async (req, res) => {
             time,
             incredients,
             category,
+            userName,
             recipeImage: uploadImage,
             userId
         }, { new: true })
