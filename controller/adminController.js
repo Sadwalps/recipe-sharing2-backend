@@ -102,11 +102,9 @@ exports.deleteRecipeController = async (req, res) => {
 //controller for get single user's recipe
 exports.getSingleUserRecipeController = async (req, res) => {
     console.log(`Inside get single user recipe controller`);
-    
-    
 
     try {
-        const usersRecipes = await recipes.find( )
+        const usersRecipes = await recipes.find()
         res.status(200).json(usersRecipes)
     } catch (error) {
         res.status(401).json(error)
@@ -136,3 +134,4 @@ exports.deleteChatController = async (req, res) => {
         res.status(401).json(error)
     }
 }
+
